@@ -3,13 +3,13 @@ package org.searchListings.helpers;
 import org.searchListings.models.ListingParent;
 import org.searchListings.models.SearchListingsInput;
 import org.searchListings.models.SearchListingsOutput;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 import static org.searchListings.Constants.*;
 
-@Service
+@Component
 public class SearchListingsHelper {
     public List<SearchListingsOutput> findBestListingMatches(List<SearchListingsInput> searchListingsInputs, List<ListingParent> totalAvailableListings) {
         //create a location->listings map
