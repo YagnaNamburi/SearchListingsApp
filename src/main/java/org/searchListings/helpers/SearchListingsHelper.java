@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-import static org.searchListings.Constants.*;
+import static org.searchListings.constants.Constants.*;
 
 @Component
 public class SearchListingsHelper {

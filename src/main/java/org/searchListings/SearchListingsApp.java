@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SearchListingsApp {
     public static void main(String[] args) {
         SpringApplication.run(SearchListingsApp.class, args);
-        System.out.println("Hello world!");
+        System.out.println("Welcome to search listings app!");
     }
 }

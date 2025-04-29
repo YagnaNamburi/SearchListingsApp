@@ -3,10 +3,10 @@ org\searchListings\models\Listing.class
 org\searchListings\services\SearchListingsResourceService$2.class
 org\searchListings\services\SearchListingsResourceService.class
 org\searchListings\resources\SearchListingsResource.class
+org\searchListings\constants\Constants.class
 org\searchListings\SearchListingsApp.class
 org\searchListings\helpers\SearchListingsHelper.class
 org\searchListings\models\SearchListingsInput.class
 org\searchListings\services\SearchListingsResourceService$1.class
-org\searchListings\Constants.class
 org\searchListings\models\SearchListingsOutput.class
 org\searchListings\models\ListingParent.class
