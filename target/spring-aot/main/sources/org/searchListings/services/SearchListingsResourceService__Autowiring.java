@@ -15,6 +15,7 @@ public class SearchListingsResourceService__Autowiring {
   public static SearchListingsResourceService apply(RegisteredBean registeredBean,
       SearchListingsResourceService instance) {
     instance.searchListingsHelper = AutowiredFieldValueResolver.forRequiredField("searchListingsHelper").resolve(registeredBean);
+    instance.resourceLoader = AutowiredFieldValueResolver.forRequiredField("resourceLoader").resolve(registeredBean);
     return instance;
   }
 }

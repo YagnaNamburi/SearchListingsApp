@@ -273,6 +273,9 @@
     "queryAllDeclaredMethods": true,
     "fields": [
       {
+        "name": "resourceLoader"
+      },
+      {
         "name": "searchListingsHelper"
       }
     ],

@@ -10,9 +10,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.searchListings.models.Listing;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -25,6 +28,8 @@ public class SearchListingsResourceService {
     private static final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     SearchListingsHelper searchListingsHelper;
+    @Autowired
+    ResourceLoader resourceLoader;
 
     public String searchListings(String searchListingsInputString)
     {
@@ -37,25 +42,32 @@ public class SearchListingsResourceService {
             else
             {
                 List<SearchListingsInput> searchListingsInputs = granularizeSearchInputs(searchListingsInputList);
-                List<Listing> totalAvailableListingsList = objectMapper.readValue(new File("src/main/resources/listings.json"), new TypeReference<List<Listing>>() {
-                });
-                List<ListingParent> totalAvailableListings = new ArrayList<>();
-                for(Listing listing : totalAvailableListingsList){
-                    totalAvailableListings.add(new ListingParent(listing.getId(), listing.getLocation_id(), listing.getLength(), listing.getWidth(), listing.getPrice_in_cents(),null, false));
-                }
-                List<SearchListingsOutput> searchListingsOutputs = searchListingsHelper.findBestListingMatches(searchListingsInputs, totalAvailableListings);
-                if(searchListingsOutputs == null || searchListingsOutputs.size() == 0) {
-                    return "No search listings found for the search criteria";
-                }
-                else {
-                    LOGGER.info("These are the number of output locations :"+searchListingsOutputs.size());
-                    Collections.sort(searchListingsOutputs, new Comparator<SearchListingsOutput>() {
-                        @Override
-                        public int compare(SearchListingsOutput o1, SearchListingsOutput o2) {
-                            return o1.getTotal_price_in_cents() - o2.getTotal_price_in_cents();
-                        }
+                Resource resource = resourceLoader.getResource ("classpath:listings.json");
+                if(resource.exists()) {
+                    String input = new String(Files.readAllBytes(Paths.get(resource.getURI())));
+                    List<Listing> totalAvailableListingsList = objectMapper.readValue(input,
+                    new TypeReference<List<Listing>>() {
                     });
-                    return searchListingsOutputs.toString();
+                    List<ListingParent> totalAvailableListings = new ArrayList<>();
+                    for (Listing listing : totalAvailableListingsList) {
+                        totalAvailableListings.add(new ListingParent(listing.getId(), listing.getLocation_id(), listing.getLength(), listing.getWidth(), listing.getPrice_in_cents(), null, false));
+                    }
+                    List<SearchListingsOutput> searchListingsOutputs = searchListingsHelper.findBestListingMatches(searchListingsInputs, totalAvailableListings);
+                    if (searchListingsOutputs == null || searchListingsOutputs.size() == 0) {
+                        return "No search listings found for the search criteria";
+                    } else {
+                        LOGGER.info("These are the number of output locations :" + searchListingsOutputs.size());
+                        Collections.sort(searchListingsOutputs, new Comparator<SearchListingsOutput>() {
+                            @Override
+                            public int compare(SearchListingsOutput o1, SearchListingsOutput o2) {
+                                return o1.getTotal_price_in_cents() - o2.getTotal_price_in_cents();
+                            }
+                        });
+                        return searchListingsOutputs.toString();
+                    }
+                }
+                else{
+                    return "Input file not found.";
                 }
             }
         }
