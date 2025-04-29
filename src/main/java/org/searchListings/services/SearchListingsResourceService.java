@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Component
@@ -47,6 +49,12 @@ public class SearchListingsResourceService {
                 }
                 else {
                     LOGGER.info("These are the number of output locations :"+searchListingsOutputs.size());
+                    Collections.sort(searchListingsOutputs, new Comparator<SearchListingsOutput>() {
+                        @Override
+                        public int compare(SearchListingsOutput o1, SearchListingsOutput o2) {
+                            return o1.getTotal_price_in_cents() - o2.getTotal_price_in_cents();
+                        }
+                    });
                     return searchListingsOutputs.toString();
                 }
             }
