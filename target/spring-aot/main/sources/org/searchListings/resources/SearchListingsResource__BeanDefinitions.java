@@ -2,6 +2,7 @@ package org.searchListings.resources;
 
 import org.springframework.aot.generate.Generated;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.InstanceSupplier;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 
 /**
@@ -14,7 +15,9 @@ public class SearchListingsResource__BeanDefinitions {
    */
   public static BeanDefinition getSearchListingsResourceBeanDefinition() {
     RootBeanDefinition beanDefinition = new RootBeanDefinition(SearchListingsResource.class);
-    beanDefinition.setInstanceSupplier(SearchListingsResource::new);
+    InstanceSupplier<SearchListingsResource> instanceSupplier = InstanceSupplier.using(SearchListingsResource::new);
+    instanceSupplier = instanceSupplier.andThen(SearchListingsResource__Autowiring::apply);
+    beanDefinition.setInstanceSupplier(instanceSupplier);
     return beanDefinition;
   }
 }

@@ -1,6 +1,8 @@
 package org.searchListings;
 
+import org.searchListings.helpers.SearchListingsHelper__BeanDefinitions;
 import org.searchListings.resources.SearchListingsResource__BeanDefinitions;
+import org.searchListings.services.SearchListingsResourceService__BeanDefinitions;
 import org.springframework.aop.framework.autoproxy.InfrastructureAdvisorAutoProxyCreator__BeanDefinitions;
 import org.springframework.aot.generate.Generated;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -65,7 +67,9 @@ public class SearchListingsApp__BeanFactoryRegistrations {
     beanFactory.registerBeanDefinition("org.springframework.context.event.internalEventListenerProcessor", EventListenerMethodProcessor__BeanDefinitions.getInternalEventListenerProcessorBeanDefinition());
     beanFactory.registerBeanDefinition("org.springframework.context.event.internalEventListenerFactory", DefaultEventListenerFactory__BeanDefinitions.getInternalEventListenerFactoryBeanDefinition());
     beanFactory.registerBeanDefinition("searchListingsApp", SearchListingsApp__BeanDefinitions.getSearchListingsAppBeanDefinition());
+    beanFactory.registerBeanDefinition("searchListingsHelper", SearchListingsHelper__BeanDefinitions.getSearchListingsHelperBeanDefinition());
     beanFactory.registerBeanDefinition("searchListingsResource", SearchListingsResource__BeanDefinitions.getSearchListingsResourceBeanDefinition());
+    beanFactory.registerBeanDefinition("searchListingsResourceService", SearchListingsResourceService__BeanDefinitions.getSearchListingsResourceServiceBeanDefinition());
     beanFactory.registerBeanDefinition("org.springframework.boot.autoconfigure.AutoConfigurationPackages", AutoConfigurationPackages__BeanDefinitions.BasePackages.getAutoConfigurationPackagesBeanDefinition());
     beanFactory.registerBeanDefinition("org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration", PropertyPlaceholderAutoConfiguration__BeanDefinitions.getPropertyPlaceholderAutoConfigurationBeanDefinition());
     beanFactory.registerBeanDefinition("propertySourcesPlaceholderConfigurer", PropertyPlaceholderAutoConfiguration__BeanDefinitions.getPropertySourcesPlaceholderConfigurerBeanDefinition());

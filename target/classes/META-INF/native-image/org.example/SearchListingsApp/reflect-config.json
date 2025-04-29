@@ -196,12 +196,28 @@
     "name": "org.reactivestreams.Publisher"
   },
   {
+    "name": "org.searchListings.helpers.SearchListingsHelper",
+    "queryAllPublicMethods": true,
+    "queryAllDeclaredMethods": true,
+    "queriedMethods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [ ]
+      }
+    ]
+  },
+  {
     "name": "org.searchListings.resources.SearchListingsResource",
     "queryAllPublicMethods": true,
     "queryAllDeclaredMethods": true,
+    "fields": [
+      {
+        "name": "searchListingsResourceService"
+      }
+    ],
     "methods": [
       {
-        "name": "testApi",
+        "name": "searchListings",
         "parameterTypes": [
           "java.lang.String"
         ]
@@ -245,6 +261,22 @@
       "typeReachable": "org.searchListings.SearchListingsApp"
     },
     "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [ ]
+      }
+    ]
+  },
+  {
+    "name": "org.searchListings.services.SearchListingsResourceService",
+    "queryAllPublicMethods": true,
+    "queryAllDeclaredMethods": true,
+    "fields": [
+      {
+        "name": "searchListingsHelper"
+      }
+    ],
+    "queriedMethods": [
       {
         "name": "<init>",
         "parameterTypes": [ ]
@@ -5095,7 +5127,7 @@
       {
         "name": "setDefaultProperties",
         "parameterTypes": [
-          "java.util.Properties"
+          "java.util.Map"
         ]
       },
       {
